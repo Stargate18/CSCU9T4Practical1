@@ -31,6 +31,27 @@ public class TrainingRecord {
        return result;
    } // lookupEntry
    
+   // look up all entries of a given day and month
+   public String lookupAllEntries (int d, int m, int y) {
+       ListIterator<Entry> iter = tr.listIterator();
+       boolean found = false;
+       String result = "No entries found";
+       String results = "";
+       while (iter.hasNext()) {
+          Entry current = iter.next();
+          if (current.getDay()==d && current.getMonth()==m && current.getYear()==y) 
+        	  if (found) {
+        		  result = result + ", ";
+        	  }
+        	 result = result + current.getEntry();
+            }
+       if (found) {
+    	   return result;
+       } else {
+    	   return "No entries found";
+       }
+   } // lookupEntry
+   
    // Count the number of entries
    public int getNumberOfEntries(){
        return tr.size();
