@@ -36,14 +36,10 @@ public class TrainingRecord {
        ListIterator<Entry> iter = tr.listIterator();
        boolean found = false;
        String result = "No entries found";
-       String results = "";
        while (iter.hasNext()) {
           Entry current = iter.next();
           if (current.getDay()==d && current.getMonth()==m && current.getYear()==y) 
-        	  if (found) {
-        		  result = result + ", ";
-        	  }
-        	 result = result + current.getEntry();
+        	 result = result + current.getEntry() + "/n";
             }
        if (found) {
     	   return result;
