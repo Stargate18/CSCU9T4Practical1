@@ -39,7 +39,7 @@ public class TrainingRecord {
        while (iter.hasNext()) {
           Entry current = iter.next();
           if (current.getDay()==d && current.getMonth()==m && current.getYear()==y) 
-        	 result = result + current.getEntry() + "/n";
+        	 result = result + current.getEntry();
             }
        if (found) {
     	   return result;
