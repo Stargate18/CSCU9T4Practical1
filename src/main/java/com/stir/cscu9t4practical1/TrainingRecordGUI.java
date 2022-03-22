@@ -102,13 +102,82 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         String message = "Record added\n";
         System.out.println("Adding "+what+" entry to the records");
         String n = name.getText();
-        int m = Integer.parseInt(month.getText());
-        int d = Integer.parseInt(day.getText());
-        int y = Integer.parseInt(year.getText());
-        float km = java.lang.Float.parseFloat(dist.getText());
-        int h = Integer.parseInt(hours.getText());
-        int mm = Integer.parseInt(mins.getText());
-        int s = Integer.parseInt(secs.getText());
+        if (n.isBlank()) {
+        	return("Name value was empty.")
+        }
+        int y = 0;
+        try {
+        	y = Integer.parseInt(year.getText());
+        	if (y < 1800 || y > 2300) {				//Assuming that historical data entry is possible, imposing reasonable limits on the timeframe.
+        		return("Invalid year value.");
+        	}
+        } catch (NumberFormatException e) {
+        	return("Year value was not an integer.");
+        }
+        int m = 0;
+        try {
+        	m = Integer.parseInt(month.getText());
+        	if (m > 12 || m < 1) {
+        		return("Invalid month value.");
+        	}
+        } catch (NumberFormatException e) {
+        	return("Month value was not an integer.");
+        }
+        int d = 0;
+        try {
+        	d = Integer.parseInt(day.getText());
+        	if (d < 1) {
+        		return("Invalid day value.");
+        	} else if ((m == 4 || m == 6 || m == 9 || m == 11) && d > 30) {
+        		return("Invalid day value.");
+        	} else if (m == 2) {
+        		if ((y % 4 == 0 && (y % 100 != 0 || y == 2000)) && d > 29) {
+        			return("Invalid day value.");
+        		} else if (d > 28) {
+        			return("Invalid day value.");
+        		}
+        	} else if (d > 31) {
+        		return("Invalid day value.");
+        	}
+        } catch (NumberFormatException e) {
+        	return("Day value was not an integer.");
+        }
+        float km = 0;
+        try {
+        	km = java.lang.Float.parseFloat(dist.getText());
+        	if (km <= 0) {
+        		return("Invalid distance value.");
+        	}
+        } catch (NumberFormatException e) {
+        	return("Distance value was not a float.");
+        }
+        int h = 0;
+        try {
+        	h = Integer.parseInt(hours.getText());
+        	if (h < 0) {
+        		return("Invalid hour value.");
+        	}
+        } catch (NumberFormatException e) {
+        	return("Hour value was not an integer.");
+        }
+        int mm = 0;
+        try {
+        	mm = Integer.parseInt(mins.getText());
+        	if (mm > 59 || mm < 0) {
+        		return("Invalid minute value.");
+        	}
+        } catch (NumberFormatException e) {
+        	return("Minute value was not an integer.");
+        }
+        int s = 0;
+        try {
+        	s = Integer.parseInt(secs.getText());
+        	if (s > 59 || s < 0) {
+        		return("Invalid second value.");
+        	}
+        } catch (NumberFormatException e) {
+        	return("Second value was not an integer.");
+        }
         Entry e = new Entry(n, d, m, y, h, mm, s, km);
         myAthletes.addEntry(e);
         return message;
