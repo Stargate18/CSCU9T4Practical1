@@ -251,7 +251,31 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         } catch (NumberFormatException e) {
         	return("Second value was not an integer.");
         }
-        Entry e = new Entry(n, d, m, y, h, mm, s, km);
+        Entry e;
+        if(types.getSelectedItem().toString().equals("Run")) {
+        e = new Entry(n, d, m, y, h, mm, s, km);
+        } else if (types.getSelectedItem().toString().equals("Sprint")) {
+        	int rep = 0;
+            try {
+            	rep = Integer.parseInt(repet.getText());
+            } catch (NumberFormatException f) {
+            	return("Repeitions value was not an integer.");
+            }
+            int rec = 0;
+            try {
+            	rec = Integer.parseInt(reco.getText());
+            } catch (NumberFormatException f) {
+            	return("Recovery value was not an integer.");
+            }
+            e = new SprintEntry(n, d, m, y, h, mm, s, km, rep, rec);
+        } else if (types.getSelectedItem().toString().equals("Cycle")) {
+        	String terrain = terr.getText();
+        	String tempo = temp.getText();
+        	e = new CycleEntry(n, d, m, y, h, mm, s, km, terrain, tempo);
+        } else {
+        	String w = where.getText();
+        	e = new SwimEntry(n, d, m, y, h, mm, s, km, w);
+        }
         myAthletes.addEntry(e);
         return message;
     }
