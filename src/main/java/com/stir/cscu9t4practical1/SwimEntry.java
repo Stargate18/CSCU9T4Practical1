@@ -10,7 +10,7 @@ public class SwimEntry extends Entry {
 	}
 
 	public String getWhere() {
-		if (this.where.contains("pool");) {
+		if (this.where.contains("pool")) {
 			return "in a pool";
 		}
 		return this.where;

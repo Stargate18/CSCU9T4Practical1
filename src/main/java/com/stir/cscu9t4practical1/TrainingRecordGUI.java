@@ -19,6 +19,11 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private JTextField mins = new JTextField(2);
     private JTextField secs = new JTextField(2);
     private JTextField dist = new JTextField(4);
+    private JTextField terr = new JTextField(8);
+    private JTextField temp = new JTextField(8);
+    private JTextField where = new JTextField(5);
+    private JTextField repet = new JTextField(4);
+    private JTextField reco = new JTextField(4);
     private JLabel labn = new JLabel(" Name:");
     private JLabel labd = new JLabel(" Day:");
     private JLabel labm = new JLabel(" Month:");
@@ -27,6 +32,11 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private JLabel labmm = new JLabel(" Mins:");
     private JLabel labs = new JLabel(" Secs:");
     private JLabel labdist = new JLabel(" Distance (km):");
+    private JLabel labter = new JLabel(" Terrain:");
+    private JLabel labtem = new JLabel(" Tempo:");
+    private JLabel labwhe = new JLabel(" Where:");
+    private JLabel labrep = new JLabel(" Repetitions:");
+    private JLabel labrec = new JLabel(" Recovery:");
     private JButton addR = new JButton("Add");
     private JButton lookUpByDate = new JButton("Look Up");
     private JButton findAllByDate = new JButton("Find By Date");
@@ -69,6 +79,31 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         add(labdist);
         add(dist);
         dist.setEditable(true);
+        add(labter);
+        labter.setVisible(false);
+        add(terr);
+        terr.setVisible(false);
+        terr.setEditable(true);
+        add(labtem);
+        labtem.setVisible(false);
+        add(temp);
+        temp.setVisible(false);
+        temp.setEditable(true);
+        add(labwhe);
+        labwhe.setVisible(false);
+        add(where);
+        where.setVisible(false);
+        where.setEditable(true);
+        add(labrep);
+        labrep.setVisible(false);
+        add(repet);
+        repet.setVisible(false);
+        repet.setEditable(true);
+        add(labrec);
+        labrec.setVisible(false);
+        add(reco);
+        reco.setVisible(false);
+        reco.setEditable(true);
         add(addR);
         addR.addActionListener(this);
         add(lookUpByDate);
@@ -92,9 +127,36 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         if (event.getSource() == types) {
         	if(types.getSelectedItem().toString().equals("Sprint")) {
         		labdist.setText(" Distance (m):");
+        		labrep.setVisible(true);
+        		repet.setVisible(true);
+        		labrec.setVisible(true);
+        		reco.setVisible(true);
         	} else {
-            	labdist.setText(" Distance (km):");
-            }
+        		labdist.setText(" Distance (km):");
+        		labrep.setVisible(false);
+        		repet.setVisible(false);
+        		labrec.setVisible(false);
+        		reco.setVisible(false);
+        	}
+        	if(types.getSelectedItem().toString().equals("Cycle")) {
+        		labter.setVisible(true);
+        		terr.setVisible(true);
+        		labtem.setVisible(true);
+        		temp.setVisible(true);
+        	} else {
+        		labter.setVisible(false);
+        		terr.setVisible(false);
+        		labtem.setVisible(false);
+        		temp.setVisible(false);
+        	}
+        	if(types.getSelectedItem().toString().equals("Swim")) {
+        		labwhe.setVisible(true);
+        		where.setVisible(true);
+        	} else {
+        		labwhe.setVisible(false);
+        		where.setVisible(false);
+        	}
+        	
         }
         if (event.getSource() == addR) {
             message = addEntry("generic");
@@ -221,6 +283,8 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         mins.setText("");
         secs.setText("");
         dist.setText("");
+        terr.setText("");
+        temp.setText("");
 
     }// blankDisplay
     // Fills the input fields on the display for testing purposes only
