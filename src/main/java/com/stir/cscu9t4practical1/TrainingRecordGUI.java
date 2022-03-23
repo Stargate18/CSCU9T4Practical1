@@ -6,9 +6,11 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import java.lang.Number;
+import java.util.List;
 
 public class TrainingRecordGUI extends JFrame implements ActionListener {
-
+	private String[] data = {"Run", "Sprint", "Cycle","Swim"};
+	private JComboBox types = new JComboBox(data);
     private JTextField name = new JTextField(30);
     private JTextField day = new JTextField(2);
     private JTextField month = new JTextField(2);
@@ -41,6 +43,8 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     public TrainingRecordGUI() {
         super("Training Record");
         setLayout(new FlowLayout());
+        add(types);
+        types.addActionListener(this);
         add(labn);
         add(name);
         name.setEditable(true);
@@ -85,6 +89,13 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     // listen for and respond to GUI events 
     public void actionPerformed(ActionEvent event) {
         String message = "";
+        if (event.getSource() == types) {
+        	if(types.getSelectedItem().toString().equals("Sprint")) {
+        		labdist.setText(" Distance (m):");
+        	} else {
+            	labdist.setText(" Distance (km):");
+            }
+        }
         if (event.getSource() == addR) {
             message = addEntry("generic");
         }
