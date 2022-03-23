@@ -103,7 +103,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         System.out.println("Adding "+what+" entry to the records");
         String n = name.getText();
         if (n.isBlank()) {
-        	return("Name value was empty.")
+        	return("Name value was empty.");
         }
         int y = 0;
         try {
