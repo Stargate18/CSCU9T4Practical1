@@ -41,6 +41,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private JButton lookUpByDate = new JButton("Look Up");
     private JButton findAllByDate = new JButton("Find By Date");
     private JButton findAllByName = new JButton("Find By Name");
+    private JButton removeEntry = new JButton("Remove By Date/Name");
     private TrainingRecord myAthletes = new TrainingRecord();
 
     private JTextArea outputArea = new JTextArea(5, 50);
@@ -112,6 +113,8 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         findAllByDate.addActionListener(this);
         add(findAllByName);
         findAllByName.addActionListener(this);
+        add(removeEntry);
+        removeEntry.addActionListener(this);
         add(outputArea);
         outputArea.setEditable(false);
         setSize(720, 200);
@@ -171,6 +174,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         }
         if (event.getSource() == findAllByName) {
             message = lookupEntriesByName();
+        }
+        if (event.getSource() == removeEntry) {
+            message = removeEntry();
         }
         outputArea.setText(message);
         blankDisplay();
@@ -308,6 +314,16 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         String n = name.getText();
         outputArea.setText("looking up records ...");
         String message = myAthletes.lookupEntriesByName(n);
+        return message;
+    }
+    
+    public String removeEntry() {
+    	int m = Integer.parseInt(month.getText());
+        int d = Integer.parseInt(day.getText());
+        int y = Integer.parseInt(year.getText());
+        String n = name.getText();
+        outputArea.setText("looking up records ...");
+        String message = myAthletes.removeEntry(m, d, y, n);
         return message;
     }
 

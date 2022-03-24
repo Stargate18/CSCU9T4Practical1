@@ -84,6 +84,7 @@ public class TrainingRecord {
 				return "Removed successfully";
 			} else {
 				return "No matching records present";
+			}
 		} // lookupEntriesByName
 
 	// Count the number of entries
