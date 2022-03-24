@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TrainingRecordGUI extends JFrame implements ActionListener {
 	private String[] data = {"Run", "Sprint", "Cycle","Swim"};
-	private JComboBox types = new JComboBox(data);
+	private JComboBox<String> types = new JComboBox<String>(data);
     private JTextField name = new JTextField(30);
     private JTextField day = new JTextField(2);
     private JTextField month = new JTextField(2);
@@ -281,6 +281,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         	String w = where.getText();
         	e = new SwimEntry(n, d, m, y, h, mm, s, km, w);
         }
+        System.out.println(e.getName());
         myAthletes.addEntry(e);
         return message;
     }
