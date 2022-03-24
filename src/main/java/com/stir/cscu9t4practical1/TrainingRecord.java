@@ -25,7 +25,7 @@ public class TrainingRecord {
        if (!found) tr.add(e);    
    } // addClass
    
-   // look up the entry of a given day and month
+   // look up the entry of a given day, month and year
    public String lookupEntry (int d, int m, int y) {
        ListIterator<Entry> iter = tr.listIterator();
        String result = "No entries found";
@@ -52,7 +52,24 @@ public class TrainingRecord {
        } else {
     	   return "Sorry couldn't find anything for this date";
        }
-   } // lookupEntry
+   } // lookupEntries
+   
+// look up all entries of a given name
+   public String lookupEntriesByName (String n) {
+       boolean found = false;
+       String result = "";
+       for (Entry x : tr) {
+          if (x.getName().toLowerCase().contains(n)) {
+        	 result = result + x.getEntry();
+          	found = true;
+            }
+       }
+       if (found) {
+    	   return result;
+       } else {
+    	   return "Sorry couldn't find anything for this date";
+       }
+   } // lookupEntries
    
    // Count the number of entries
    public int getNumberOfEntries(){

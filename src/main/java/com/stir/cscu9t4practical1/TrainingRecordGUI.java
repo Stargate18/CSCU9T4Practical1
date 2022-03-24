@@ -40,7 +40,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private JButton addR = new JButton("Add");
     private JButton lookUpByDate = new JButton("Look Up");
     private JButton findAllByDate = new JButton("Find By Date");
-
+    private JButton findAllByName = new JButton("Find By Name");
     private TrainingRecord myAthletes = new TrainingRecord();
 
     private JTextArea outputArea = new JTextArea(5, 50);
@@ -110,6 +110,8 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         lookUpByDate.addActionListener(this);
         add(findAllByDate);
         findAllByDate.addActionListener(this);
+        add(findAllByName);
+        findAllByName.addActionListener(this);
         add(outputArea);
         outputArea.setEditable(false);
         setSize(720, 200);
@@ -165,7 +167,10 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
             message = lookupEntry();
         }
         if (event.getSource() == findAllByDate) {
-            message = lookupAllEntries();
+            message = lookupEntries();
+        }
+        if (event.getSource() == findAllByName) {
+            message = lookupEntriesByName();
         }
         outputArea.setText(message);
         blankDisplay();
@@ -289,12 +294,19 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         return message;
     }
     
-    public String lookupAllEntries() {
+    public String lookupEntries() {
         int m = Integer.parseInt(month.getText());
         int d = Integer.parseInt(day.getText());
         int y = Integer.parseInt(year.getText());
         outputArea.setText("looking up records ...");
         String message = myAthletes.lookupEntries(d, m, y);
+        return message;
+    }
+    
+    public String lookupEntriesByName() {
+        String n = name.getText();
+        outputArea.setText("looking up records ...");
+        String message = myAthletes.lookupEntriesByName(n);
         return message;
     }
 
