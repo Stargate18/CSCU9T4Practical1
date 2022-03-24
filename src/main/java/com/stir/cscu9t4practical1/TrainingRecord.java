@@ -68,7 +68,23 @@ public class TrainingRecord {
 		} else {
 			return "Sorry couldn't find anything for this date";
 		}
-	} // lookupEntries
+	} // lookupEntriesByName
+	
+	// look up all entries of a given name
+		public String removeEntry(int d, int m, int y, String n) {
+			boolean found = false;
+			for (Entry x : tr) {
+				if (x.getName().equalsIgnoreCase(n) && x.getDay() == d && x.getMonth() == m
+						&& x.getYear() == y) {
+					found = true;
+					tr.remove(x);
+				}
+			}
+			if (found) {
+				return "Removed successfully";
+			} else {
+				return "No matching records present";
+		} // lookupEntriesByName
 
 	// Count the number of entries
 	public int getNumberOfEntries() {
