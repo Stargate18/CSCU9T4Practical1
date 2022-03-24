@@ -38,7 +38,7 @@ public class TrainingRecord {
    } // lookupEntry
    
    // look up all entries of a given day and month
-   public String lookupAllEntries (int d, int m, int y) {
+   public String lookupEntries (int d, int m, int y) {
        boolean found = false;
        String result = "";
        for (Entry x : tr) {
