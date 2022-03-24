@@ -16,7 +16,13 @@ public class TrainingRecord {
     
     // add a record to the list
    public void addEntry(Entry e){
-       tr.add(e);    
+	   boolean found = false;
+       for (Entry x : tr) {
+          if (x.getName().equalsIgnoreCase(e.getName()) && x.getDay() == e.getDay() && x.getMonth() == e.getMonth() && x.getYear() == e.getYear()) {
+        	 found = true;
+            }
+       }
+       if (!found) tr.add(e);    
    } // addClass
    
    // look up the entry of a given day and month
@@ -33,18 +39,18 @@ public class TrainingRecord {
    
    // look up all entries of a given day and month
    public String lookupAllEntries (int d, int m, int y) {
-       ListIterator<Entry> iter = tr.listIterator();
        boolean found = false;
-       String result = "No entries found";
-       while (iter.hasNext()) {
-          Entry current = iter.next();
-          if (current.getDay()==d && current.getMonth()==m && current.getYear()==y) 
-        	 result = result + current.getEntry();
+       String result = "";
+       for (Entry x : tr) {
+          if (x.getDay() == d && x.getMonth() == m && x.getYear() == y) {
+        	 result = result + x.getEntry();
+          	found = true;
             }
+       }
        if (found) {
     	   return result;
        } else {
-    	   return "No entries found";
+    	   return "Sorry couldn't find anything for this date";
        }
    } // lookupEntry
    
