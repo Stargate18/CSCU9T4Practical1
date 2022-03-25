@@ -57,7 +57,6 @@ public class TrainingRecord {
 		boolean found = false;
 		String result = "";
 		for (Entry x : tr) {
-			System.out.println(x.getName());
 			if (x.getName().toLowerCase().contains(n.toLowerCase())) {
 				result = result + x.getEntry();
 				found = true;
@@ -66,7 +65,7 @@ public class TrainingRecord {
 		if (found) {
 			return result;
 		} else {
-			return "Sorry couldn't find anything for this date";
+			return "Sorry couldn't find anything for this name";
 		}
 	} // lookupEntriesByName
 	

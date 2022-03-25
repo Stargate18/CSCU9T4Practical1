@@ -143,4 +143,28 @@ public class TrainingRecordTest {
         assertEquals(expectResults,resultSuccess);
     }
     
+    /**
+     * Test of yet to be implemented lookupEntries, of class TrainingRecord
+     * Implement the method and then remove the "fail" line below and
+     * un-comment call to the method and the assertion line
+     */
+    @Test
+    public void testLookupEntriesByName() {
+        System.out.println("lookupEntriesByName");
+        String expectResultsNone = "Sorry couldn't find anything for this name";
+        String expectResults = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n" + 
+                                "Alice ran 3.0 km in 0:14:15 on 1/2/2004\n";
+        TrainingRecord instance = new TrainingRecord();
+        Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
+        Entry b = new Entry("Alice", 1, 2, 2004, 0, 14, 15, 3);
+        instance.addEntry(a);
+        instance.addEntry(b);
+        String c = "Alice";
+        String d = "Bob";
+        String resultSuccess = instance.lookupEntriesByName(c);
+        String resultNone = instance.lookupEntriesByName(d);
+        assertEquals(expectResultsNone,resultNone);
+        assertEquals(expectResults,resultSuccess);
+    }
+    
 }

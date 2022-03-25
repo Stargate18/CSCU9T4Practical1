@@ -95,6 +95,17 @@ public class TrainingRecordGUITest {
         assertEquals(message,"Record added\n");
     }
     
+    @Test
+    public void testVerification(){
+        System.out.println("addEntry");
+        TrainingRecordGUI instance = new TrainingRecordGUI();
+        Entry entry = new Entry("Alice", 1, 2, 2403, 0, 16, 7, 3);
+        instance.fillDisplay(entry);
+        String message = instance.addEntry("generic");
+        System.out.println(message);
+        assertEquals(message,"Invalid year value\n");
+    }
+    
     /**
      * Test to see if all display requirements have been met
      */
