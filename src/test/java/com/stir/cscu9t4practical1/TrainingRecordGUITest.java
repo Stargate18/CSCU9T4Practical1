@@ -90,7 +90,7 @@ public class TrainingRecordGUITest {
         TrainingRecordGUI instance = new TrainingRecordGUI();
         Entry entry = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
         instance.fillDisplay(entry);
-        String message = instance.addEntry("generic");
+        String message = instance.addEntry("run");
         System.out.println(message);
         assertEquals(message,"Record added\n");
     }
@@ -101,7 +101,7 @@ public class TrainingRecordGUITest {
         TrainingRecordGUI instance = new TrainingRecordGUI();
         CycleEntry entry = new CycleEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, "asphalt", "moderate");
         instance.fillDisplay(entry);
-        String message = instance.addEntry("generic");
+        String message = instance.addEntry("cycle");
         System.out.println(message);
         assertEquals(message,"Record added\n");
     }
@@ -112,7 +112,7 @@ public class TrainingRecordGUITest {
         TrainingRecordGUI instance = new TrainingRecordGUI();
         SprintEntry entry = new SprintEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, 5, 2);
         instance.fillDisplay(entry);
-        String message = instance.addEntry("generic");
+        String message = instance.addEntry("sprint");
         System.out.println(message);
         assertEquals(message,"Record added\n");
     }
@@ -123,7 +123,7 @@ public class TrainingRecordGUITest {
         TrainingRecordGUI instance = new TrainingRecordGUI();
         SwimEntry entry = new SwimEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, "pool");
         instance.fillDisplay(entry);
-        String message = instance.addEntry("generic");
+        String message = instance.addEntry("swim");
         System.out.println(message);
         assertEquals(message,"Record added\n");
     }
@@ -134,7 +134,7 @@ public class TrainingRecordGUITest {
         TrainingRecordGUI instance = new TrainingRecordGUI();
         Entry entry = new Entry("Alice", 1, 2, 2403, 0, 16, 7, 3);
         instance.fillDisplay(entry);
-        String message = instance.addEntry("generic");
+        String message = instance.addEntry("run");
         System.out.println(message);
         assertEquals(message,"Invalid year value");
     }

@@ -164,15 +164,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         	
         }
         if (event.getSource() == addR) {
-        	if (types.getSelectedItem().toString().equals("Cycle")) {
-        		 message = addEntry("cycle");
-        	} else if (types.getSelectedItem().toString().equals("Sprint")) {
-        		message = addEntry("sprint");
-        	} else if (types.getSelectedItem().toString().equals("Swim")) {
-        		message = addEntry("swim");
-        	} else {
-        		message = addEntry("generic");
-        	}
+        	addEntry(types.getSelectedItem().toString().toLowerCase());
         }
         if (event.getSource() == lookUpByDate) {
             message = lookupEntry();
@@ -271,7 +263,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         	return("Second value was not an integer");
         }
         Entry e;
-        if(what == "generic") {
+        if(what == "run") {
         e = new Entry(n, d, m, y, h, mm, s, km);
         } else if (what == "sprint") {
         	int rep = 0;
@@ -295,7 +287,6 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         	String w = where.getText();
         	e = new SwimEntry(n, d, m, y, h, mm, s, km, w);
         }
-        System.out.println(e.getName());
         myAthletes.addEntry(e);
         return message;
     }
@@ -352,22 +343,22 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     }// blankDisplay
     // Fills the input fields on the display for testing purposes only
     public void fillDisplay(Entry ent) {
-    	if (ent.getClass().getName() == "CycleEntry") {
+    	if (ent.getClass().getName().contains("CycleEntry")) {
     		CycleEntry ent2 = (CycleEntry) ent;
     		types.setSelectedItem("Cycle");
     		terr.setText(ent2.getTerrain());
     		temp.setText(ent2.getTempo());
-    	}
-    	if (ent.getClass().getName() == "SprintEntry") {
+    	} else if (ent.getClass().getName().contains("SprintEntry")) {
     		SprintEntry ent2 = (SprintEntry) ent;
     		types.setSelectedItem("Sprint");
-    		repet.setText(Integer.toString(ent2.getRepetitions()));
-    		reco.setText(Integer.toString(ent2.getRecovery()));
-    	}
-    	if (ent.getClass().getName() == "SwimEntry") {
+    		repet.setText(String.valueOf(ent2.getRepetitions()));
+    		reco.setText(String.valueOf(ent2.getRecovery()));
+    	}else if (ent.getClass().getName().contains("SwimEntry")) {
     		SwimEntry ent2 = (SwimEntry) ent;
     		types.setSelectedItem("Swim");
     		where.setText(ent2.getWhere());
+    	} else {
+    		types.setSelectedItem("Run");
     	}
         name.setText(ent.getName());
         day.setText(String.valueOf(ent.getDay()));
