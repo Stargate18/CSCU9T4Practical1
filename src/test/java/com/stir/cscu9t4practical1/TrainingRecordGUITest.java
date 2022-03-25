@@ -96,6 +96,39 @@ public class TrainingRecordGUITest {
     }
     
     @Test
+    public void testAddCycleEntry(){
+        System.out.println("addCycleEntry");
+        TrainingRecordGUI instance = new TrainingRecordGUI();
+        CycleEntry entry = new CycleEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, "asphalt", "moderate");
+        instance.fillDisplay(entry);
+        String message = instance.addEntry("generic");
+        System.out.println(message);
+        assertEquals(message,"Record added\n");
+    }
+    
+    @Test
+    public void testAddSprintEntry(){
+        System.out.println("addSprintEntry");
+        TrainingRecordGUI instance = new TrainingRecordGUI();
+        SprintEntry entry = new SprintEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, 5, 2);
+        instance.fillDisplay(entry);
+        String message = instance.addEntry("generic");
+        System.out.println(message);
+        assertEquals(message,"Record added\n");
+    }
+    
+    @Test
+    public void testAddSwimEntry(){
+        System.out.println("addSwimEntry");
+        TrainingRecordGUI instance = new TrainingRecordGUI();
+        SwimEntry entry = new SwimEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, "pool");
+        instance.fillDisplay(entry);
+        String message = instance.addEntry("generic");
+        System.out.println(message);
+        assertEquals(message,"Record added\n");
+    }
+    
+    @Test
     public void testVerification(){
         System.out.println("addEntry");
         TrainingRecordGUI instance = new TrainingRecordGUI();
@@ -103,7 +136,7 @@ public class TrainingRecordGUITest {
         instance.fillDisplay(entry);
         String message = instance.addEntry("generic");
         System.out.println(message);
-        assertEquals(message,"Invalid year value\n");
+        assertEquals(message,"Invalid year value");
     }
     
     /**

@@ -5,12 +5,19 @@ import java.util.*;
 
 public class TrainingRecord {
 	private List<Entry> tr;
-
+	
+	/**
+	* Constructor for TrainingRecord().
+	*/
 	public TrainingRecord() {
 		tr = new ArrayList<Entry>();
 	} // constructor
 
-	// add a record to the list
+	/**
+	* Adds a entry to the training record.
+	*
+	* @param  e the entry to be added to the training record
+	*/
 	public void addEntry(Entry e) {
 		boolean found = false;
 		for (Entry x : tr) {
@@ -23,7 +30,15 @@ public class TrainingRecord {
 			tr.add(e);
 	} // addClass
 
-	// look up the entry of a given day, month and year
+	/**
+	* Finds the first entry from the provided day, month, and year.
+	*
+	* @param  d the day to be searched
+	* @param  m the month to be searched
+	* @param  y the year to be searched
+	* @return the string representation of the first entry found, or a default string if
+	* none were found
+	*/
 	public String lookupEntry(int d, int m, int y) {
 		ListIterator<Entry> iter = tr.listIterator();
 		String result = "No entries found";
@@ -35,6 +50,15 @@ public class TrainingRecord {
 		return result;
 	} // lookupEntry
 
+	/**
+	* Finds all entries from the provided day, month, and year.
+	*
+	* @param  d the day to be searched
+	* @param  m the month to be searched
+	* @param  y the year to be searched
+	* @return the string representation of all entries found, or a default string if
+	* none were found
+	*/
 	// look up all entries of a given day and month
 	public String lookupEntries(int d, int m, int y) {
 		boolean found = false;
@@ -52,7 +76,14 @@ public class TrainingRecord {
 		}
 	} // lookupEntries
 
-// look up all entries of a given name
+	/**
+	* Finds all entries given the provided name. Partial matching is ued to handle edge cases
+	* - different formatting of names, last names being included/excluded, etc.
+	*
+	* @param  n the name to be searched
+	* @return the string representation of all entries found, or a default string if
+	* none were found
+	*/
 	public String lookupEntriesByName(String n) {
 		boolean found = false;
 		String result = "";
@@ -69,7 +100,16 @@ public class TrainingRecord {
 		}
 	} // lookupEntriesByName
 	
-	// look up all entries of a given name
+	/**
+	* Finds the entry (if it exists) of a given name from a given day, month, and year,
+	* and removes it from the training record
+	* 
+	* @param  d the day to be searched
+	* @param  m the month to be searched
+	* @param  y the year to be searched
+	* @param  n the name to be searched
+	* @return a string describing if the removal was successful or not.
+	*/
 		public String removeEntry(int d, int m, int y, String n) {
 			boolean found = false;
 			for (Entry x : tr) {

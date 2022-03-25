@@ -164,7 +164,15 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         	
         }
         if (event.getSource() == addR) {
-            message = addEntry("generic");
+        	if (types.getSelectedItem().toString().equals("Cycle")) {
+        		 message = addEntry("cycle");
+        	} else if (types.getSelectedItem().toString().equals("Sprint")) {
+        		message = addEntry("sprint");
+        	} else if (types.getSelectedItem().toString().equals("Swim")) {
+        		message = addEntry("swim");
+        	} else {
+        		message = addEntry("generic");
+        	}
         }
         if (event.getSource() == lookUpByDate) {
             message = lookupEntry();
@@ -263,9 +271,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         	return("Second value was not an integer");
         }
         Entry e;
-        if(types.getSelectedItem().toString().equals("Run")) {
+        if(what == "generic") {
         e = new Entry(n, d, m, y, h, mm, s, km);
-        } else if (types.getSelectedItem().toString().equals("Sprint")) {
+        } else if (what == "sprint") {
         	int rep = 0;
             try {
             	rep = Integer.parseInt(repet.getText());
@@ -279,7 +287,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
             	return("Recovery value was not an integer");
             }
             e = new SprintEntry(n, d, m, y, h, mm, s, km, rep, rec);
-        } else if (types.getSelectedItem().toString().equals("Cycle")) {
+        } else if (what == "cycle") {
         	String terrain = terr.getText();
         	String tempo = temp.getText();
         	e = new CycleEntry(n, d, m, y, h, mm, s, km, terrain, tempo);
@@ -338,10 +346,29 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         dist.setText("");
         terr.setText("");
         temp.setText("");
-
+        where.setText("");
+        repet.setText("");
+        reco.setText("");
     }// blankDisplay
     // Fills the input fields on the display for testing purposes only
     public void fillDisplay(Entry ent) {
+    	if (ent.getClass().getName() == "CycleEntry") {
+    		CycleEntry ent2 = (CycleEntry) ent;
+    		types.setSelectedItem("Cycle");
+    		terr.setText(ent2.getTerrain());
+    		temp.setText(ent2.getTempo());
+    	}
+    	if (ent.getClass().getName() == "SprintEntry") {
+    		SprintEntry ent2 = (SprintEntry) ent;
+    		types.setSelectedItem("Sprint");
+    		repet.setText(Integer.toString(ent2.getRepetitions()));
+    		reco.setText(Integer.toString(ent2.getRecovery()));
+    	}
+    	if (ent.getClass().getName() == "SwimEntry") {
+    		SwimEntry ent2 = (SwimEntry) ent;
+    		types.setSelectedItem("Swim");
+    		where.setText(ent2.getWhere());
+    	}
         name.setText(ent.getName());
         day.setText(String.valueOf(ent.getDay()));
         month.setText(String.valueOf(ent.getMonth()));
