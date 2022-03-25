@@ -43,7 +43,7 @@ public class CycleEntryTest {
     @Test
     public void testGetName() {
         System.out.println("getName");
-        Entry instance = new CycleEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, "asphalt", "moderate");
+		Entry instance = new CycleEntry("Alice", 1, 2, 2003, 0, 16, 7, 3, "asphalt", "moderate");
         String expResult = "Alice";
         String result = instance.getName();
         assertEquals(expResult, result);
