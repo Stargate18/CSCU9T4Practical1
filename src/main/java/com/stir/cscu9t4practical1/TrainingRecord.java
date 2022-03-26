@@ -171,39 +171,56 @@ public class TrainingRecord {
 	public String weeklyDistance(int d, int m, int y) {
 		// Initialise a variable to store if any matching entries was found.
 		boolean found = false;
+		// Initialise a new calendar which, by default, has the current date/time.
 		Calendar inst = Calendar.getInstance();
-		inst.set(y, m - 1, d);
+		// Initialise another calendar, to compare the current date/time with.
 		Calendar compare = Calendar.getInstance();
+		// INitialize variables to hold the difference between two dates, as well as the
+		// totals for each type of entry.
 		int diff = 0;
 		double runtotal = 0.0;
 		double cycletotal = 0.0;
 		double swimtotal = 0.0;
-		System.out.println(tr.size());
 		// Initialise an empty results string.
 		String result = "";
 		// Iterate over each entry in the training record.
 		for (Entry x : tr) {
+			// Set the comparison calendar to the provided date, and get the difference
+			// between the two.
 			compare.set((x.getYear()), (x.getMonth()) - 1, (x.getDay()));
 			diff = (int) Duration.between(inst.toInstant(), compare.toInstant()).toDays();
-			System.out.println(diff);
-			// If the entry has the provided day, month, and year, add the string
-			// representation of it to the results string, and mark that an entry was found.
+			// If the difference is within the limits, run the contained code.
 			if (diff >= -6 && diff <= 0) {
+				// Add the representation of the result onto the results string.
 				result = result + x.getEntry();
+				// Mark that at least one has been found.
 				found = true;
+				// If the entry is a sprint, divide the distance by 1000 (as sprints are
+				// measured in meters, and multiply by the number of repetitions, then add the
+				// total to the total running distance.
 				if (x.getClass().getName().contains("Sprint")) {
 					SprintEntry s = (SprintEntry) x;
 					runtotal = runtotal + ((s.getDistance() / 1000) * s.getRepetitions());
-				} else if (x.getClass().getName().contains("Cycle")){
+				}
+				// If the entry is a cycle entry, then add the total to the total cycling
+				// distance.
+				else if (x.getClass().getName().contains("Cycle")) {
 					cycletotal = cycletotal + x.getDistance();
-				} else if (x.getClass().getName().contains("Swim")){
+				}
+				// If the entry is a swimming entry, then add the total to the total swimming
+				// distance.
+				else if (x.getClass().getName().contains("Swim")) {
 					swimtotal = swimtotal + x.getDistance();
-				} else {
+				}
+				// If the entry is a running entry (as no other options exist), then add the
+				// total to the total running distance.
+				else {
 					runtotal = runtotal + x.getDistance();
 				}
 			}
 		}
-		result = result + "Total running: " + runtotal + "\nTotal cycling: " + cycletotal + "\nTotal swimming: " + swimtotal;
+		result = result + "Total running: " + runtotal + "\nTotal cycling: " + cycletotal + "\nTotal swimming: "
+				+ swimtotal;
 		// If at least one entry was found, return the results string, and return a
 		// message if not.
 		if (found) {

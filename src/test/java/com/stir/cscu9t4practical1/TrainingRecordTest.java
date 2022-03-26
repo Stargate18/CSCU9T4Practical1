@@ -167,24 +167,22 @@ public class TrainingRecordTest {
 	@Test
 	public void testTotalDistance() {
 		System.out.println("lookupEntries");
-		String expectResultsNone = "Sorry, couldn't find anything for this date";
-		String expectResults = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n"
-				+ "Bob ran 4.0 km in 0:14:15 on 1/2/2003\n"
-				+ "Alice cycled 3.0 km in 0:16:7 on 2/2/2003 on asphalt at moderate tempo\n"
+		String expectResults = "Alice ran 3.0 km in 0:16:7 on 24/3/2022\n"
+				+ "Bob ran 4.0 km in 0:14:15 on 24/3/2022\n"
+				+ "Alice cycled 3.0 km in 0:16:7 on 25/3/2022 on asphalt at moderate tempo\n"
 				+ "Total running: 7.0\n" + "Total cycling: 3.0\n" + "Total swimming: 0.0";
 		TrainingRecord instance = new TrainingRecord();
-		Entry a = new Entry("Alice", 1, 2, 2003, 0, 16, 7, 3);
-		Entry b = new Entry("Bob", 1, 2, 2003, 0, 14, 15, 4);
-		Entry c = new CycleEntry("Alice", 2, 2, 2003, 0, 16, 7, 3, "asphalt", "moderate");
+		Entry a = new Entry("Alice", 24, 3, 2022, 0, 16, 7, 3);
+		Entry b = new Entry("Bob", 24, 3, 2022, 0, 14, 15, 4);
+		Entry c = new CycleEntry("Alice", 25, 3, 2022, 0, 16, 7, 3, "asphalt", "moderate");
 		instance.addEntry(a);
 		instance.addEntry(b);
 		instance.addEntry(c);
 		int d = 5;
 		int m = 2;
 		int y = 2003;
-		String resultSuccess = instance.weeklyDistance(d, m, y);
-		System.out.println(resultSuccess);
-		assertEquals(expectResults, resultSuccess);
+		String result = instance.weeklyDistance(d, m, y);
+		assertEquals(expectResults, result);
 	}
 
 }
