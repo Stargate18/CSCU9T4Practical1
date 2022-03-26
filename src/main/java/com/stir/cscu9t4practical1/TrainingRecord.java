@@ -19,7 +19,7 @@ public class TrainingRecord {
 	 *
 	 * @param e the entry to be added to the training record
 	 */
-	public void addEntry(Entry e) {
+	public String addEntry(Entry e) {
 		// Initialise a variable to store if a matching entry was found.
 		boolean found = false;
 		// Iterate over each entry in the training record.
@@ -33,9 +33,12 @@ public class TrainingRecord {
 			}
 		}
 		// If a matching entry was not found, add the provided entry to the training
-		// record.
-		if (!found)
-			tr.add(e);
+		// record and return the success message. If not, return the failure message.
+		if (!found) {
+			return "Record added";
+		} else {
+			return "Sorry, a similar record already existed";
+		}
 	} // addClass
 
 	/**
