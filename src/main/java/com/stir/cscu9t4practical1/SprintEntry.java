@@ -7,7 +7,7 @@ public class SprintEntry extends Entry {
 
 	/**
 	 * Constructor for a swim entry. Uses the Entry constructor, then stores the
-	 * location variable itself separately.
+	 * repetition and recovery variables themselves separately.
 	 * 
 	 * @param n    the name to be stored
 	 * @param d    the day to be stored

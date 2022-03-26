@@ -9,8 +9,8 @@ public class Entry {
 	private float distance;
 
 	/**
-	 * Constructor for a swim entry. Uses the Entry constructor, then stores the
-	 * location variable itself separately.
+	 * Constructor for an entry. Stores the date-time information in a calendar object,
+	 * and stores the name and distance in seperate variables.
 	 * 
 	 * @param n    the name to be stored
 	 * @param d    the day to be stored

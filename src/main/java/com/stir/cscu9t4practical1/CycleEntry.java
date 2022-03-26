@@ -9,7 +9,7 @@ public class CycleEntry extends Entry {
 
 	/**
 	 * Constructor for a swim entry. Uses the Entry constructor, then stores the
-	 * location variable itself separately.
+	 * terrain and tempo variables themself separately.
 	 * 
 	 * @param n       the name to be stored
 	 * @param d       the day to be stored
