@@ -1,6 +1,7 @@
 // An implementation of a Training Record as an ArrayList
 package com.stir.cscu9t4practical1;
 
+import java.time.Duration;
 import java.util.*;
 
 public class TrainingRecord {
@@ -35,6 +36,7 @@ public class TrainingRecord {
 		// If a matching entry was not found, add the provided entry to the training
 		// record and return the success message. If not, return the failure message.
 		if (!found) {
+			tr.add(e);
 			return "Record added";
 		} else {
 			return "Sorry, a similar record already existed";
@@ -78,7 +80,6 @@ public class TrainingRecord {
 	 * @return the string representation of all entries found, or a default string
 	 *         if none were found
 	 */
-	// look up all entries of a given day and month
 	public String lookupEntries(int d, int m, int y) {
 		// Initialise a variable to store if any matching entries was found.
 		boolean found = false;
@@ -166,6 +167,51 @@ public class TrainingRecord {
 			return "No matching records present";
 		}
 	} // removeEntry
+
+	public String weeklyDistance(int d, int m, int y) {
+		// Initialise a variable to store if any matching entries was found.
+		boolean found = false;
+		Calendar inst = Calendar.getInstance();
+		inst.set(y, m - 1, d);
+		Calendar compare = Calendar.getInstance();
+		int diff = 0;
+		double runtotal = 0.0;
+		double cycletotal = 0.0;
+		double swimtotal = 0.0;
+		System.out.println(tr.size());
+		// Initialise an empty results string.
+		String result = "";
+		// Iterate over each entry in the training record.
+		for (Entry x : tr) {
+			compare.set((x.getYear()), (x.getMonth()) - 1, (x.getDay()));
+			diff = (int) Duration.between(inst.toInstant(), compare.toInstant()).toDays();
+			System.out.println(diff);
+			// If the entry has the provided day, month, and year, add the string
+			// representation of it to the results string, and mark that an entry was found.
+			if (diff >= -6 && diff <= 0) {
+				result = result + x.getEntry();
+				found = true;
+				if (x.getClass().getName().contains("Sprint")) {
+					SprintEntry s = (SprintEntry) x;
+					runtotal = runtotal + ((s.getDistance() / 1000) * s.getRepetitions());
+				} else if (x.getClass().getName().contains("Cycle")){
+					cycletotal = cycletotal + x.getDistance();
+				} else if (x.getClass().getName().contains("Swim")){
+					swimtotal = swimtotal + x.getDistance();
+				} else {
+					runtotal = runtotal + x.getDistance();
+				}
+			}
+		}
+		result = result + "Total running: " + runtotal + "\nTotal cycling: " + cycletotal + "\nTotal swimming: " + swimtotal;
+		// If at least one entry was found, return the results string, and return a
+		// message if not.
+		if (found) {
+			return result;
+		} else {
+			return "Sorry, couldn't find anything in the last week";
+		}
+	} // lookupEntries
 
 	/**
 	 * Finds the number of entries present within the training record.
