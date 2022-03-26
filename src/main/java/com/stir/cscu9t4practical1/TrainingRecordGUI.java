@@ -46,11 +46,16 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 
 	private JTextArea outputArea = new JTextArea(5, 50);
 
+	/**
+	 * The function called upon execution. Creates a new instancw of the class.
+	 */
 	public static void main(String[] args) {
 		TrainingRecordGUI applic = new TrainingRecordGUI();
 	} // main
 
-	// set up the GUI
+	/**
+	 * Constructor for the GUI. Adds all elements to the GUI, makes fields editable, and enables listeners.
+	 */
 	public TrainingRecordGUI() {
 		super("Training Record");
 		setLayout(new FlowLayout());
@@ -120,13 +125,13 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		setSize(720, 200);
 		setVisible(true);
 		blankDisplay();
-
-		// To save typing in new entries while testing, uncomment
-		// the following lines (or add your own test cases)
-
 	} // constructor
 
-	// listen for and respond to GUI events
+	/**
+	 * Listens for and responds to GUI events.
+	 *
+	 * @param event the action that occurred
+	 */
 	public void actionPerformed(ActionEvent event) {
 		String message = "";
 		if (event.getSource() == types) {
@@ -182,6 +187,11 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		blankDisplay();
 	} // actionPerformed
 
+	/**
+	 * Add an entry to the training record, using the information entered into the fields.
+	 *
+	 * @param what the type of entry to be added.
+	 */
 	public String addEntry(String what) {
 		String message = "Record added\n";
 		System.out.println("Adding " + what + " entry to the records");
@@ -292,6 +302,12 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		return message;
 	}
 
+	/**
+	 * For GUI testing purposes - fills the GUI's fields with the information from
+	 * an entry object
+	 *
+	 * @param ent the entry used for testing
+	 */
 	public String lookupEntry() {
 		int m = Integer.parseInt(month.getText());
 		int d = Integer.parseInt(day.getText());
@@ -327,6 +343,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		return message;
 	}
 
+	/**
+	 * Clear all fields in the GUI
+	 */
 	public void blankDisplay() {
 		name.setText("");
 		day.setText("");
@@ -344,6 +363,12 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 	}// blankDisplay
 		// Fills the input fields on the display for testing purposes only
 
+	/**
+	 * For GUI testing purposes - fills the GUI's fields with the information from
+	 * an entry object
+	 *
+	 * @param ent the entry used for testing
+	 */
 	public void fillDisplay(Entry ent) {
 		if (ent.getClass().getName().contains("CycleEntry")) {
 			CycleEntry ent2 = (CycleEntry) ent;
