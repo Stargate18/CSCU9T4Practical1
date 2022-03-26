@@ -54,7 +54,8 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 	} // main
 
 	/**
-	 * Constructor for the GUI. Adds all elements to the GUI, makes fields editable, and enables listeners.
+	 * Constructor for the GUI. Adds all elements to the GUI, makes fields editable,
+	 * and enables listeners.
 	 */
 	public TrainingRecordGUI() {
 		super("Training Record");
@@ -188,7 +189,8 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 	} // actionPerformed
 
 	/**
-	 * Add an entry to the training record, using the information entered into the fields.
+	 * Add an entry to the training record, using the information entered into the
+	 * fields.
 	 *
 	 * @param what the type of entry to be added.
 	 */
@@ -303,29 +305,65 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * For GUI testing purposes - fills the GUI's fields with the information from
-	 * an entry object
-	 *
-	 * @param ent the entry used for testing
+	 * Call a function to find an entry that matches a date, using the arguments
+	 * provided in the GUI's fields.
 	 */
 	public String lookupEntry() {
-		int m = Integer.parseInt(month.getText());
-		int d = Integer.parseInt(day.getText());
-		int y = Integer.parseInt(year.getText());
+		int d = 0;
+		try {
+			d = Integer.parseInt(day.getText());
+		} catch (NumberFormatException e) {
+			return ("Day value was not an integer");
+		}
+		int m = 0;
+		try {
+			m = Integer.parseInt(month.getText());
+		} catch (NumberFormatException e) {
+			return ("Month value was not an integer");
+		}
+		int y = 0;
+		try {
+			y = Integer.parseInt(year.getText());
+		} catch (NumberFormatException e) {
+			return ("Year value was not an integer");
+		}
 		outputArea.setText("looking up record ...");
 		String message = myAthletes.lookupEntry(d, m, y);
 		return message;
 	}
 
+	/**
+	 * Call a function to find all entry that match a date, using the arguments
+	 * provided in the GUI's fields.
+	 */
 	public String lookupEntries() {
-		int m = Integer.parseInt(month.getText());
-		int d = Integer.parseInt(day.getText());
-		int y = Integer.parseInt(year.getText());
+		int d = 0;
+		try {
+			d = Integer.parseInt(day.getText());
+		} catch (NumberFormatException e) {
+			return ("Day value was not an integer");
+		}
+		int m = 0;
+		try {
+			m = Integer.parseInt(month.getText());
+		} catch (NumberFormatException e) {
+			return ("Month value was not an integer");
+		}
+		int y = 0;
+		try {
+			y = Integer.parseInt(year.getText());
+		} catch (NumberFormatException e) {
+			return ("Year value was not an integer");
+		}
 		outputArea.setText("looking up records ...");
 		String message = myAthletes.lookupEntries(d, m, y);
 		return message;
 	}
 
+	/**
+	 * Call a function to find all entry that match a name, using the arguments
+	 * provided in the GUI's fields.
+	 */
 	public String lookupEntriesByName() {
 		String n = name.getText();
 		outputArea.setText("looking up records ...");
@@ -333,10 +371,29 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		return message;
 	}
 
+	/**
+	 * Call a function to remove the entry that matches a date and name, using the
+	 * arguments provided in the GUI's fields.
+	 */
 	public String removeEntry() {
-		int m = Integer.parseInt(month.getText());
-		int d = Integer.parseInt(day.getText());
-		int y = Integer.parseInt(year.getText());
+		int d = 0;
+		try {
+			d = Integer.parseInt(day.getText());
+		} catch (NumberFormatException e) {
+			return ("Day value was not an integer");
+		}
+		int m = 0;
+		try {
+			m = Integer.parseInt(month.getText());
+		} catch (NumberFormatException e) {
+			return ("Month value was not an integer");
+		}
+		int y = 0;
+		try {
+			y = Integer.parseInt(year.getText());
+		} catch (NumberFormatException e) {
+			return ("Year value was not an integer");
+		}
 		String n = name.getText();
 		outputArea.setText("looking up records ...");
 		String message = myAthletes.removeEntry(m, d, y, n);
@@ -361,7 +418,6 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		repet.setText("");
 		reco.setText("");
 	}// blankDisplay
-		// Fills the input fields on the display for testing purposes only
 
 	/**
 	 * For GUI testing purposes - fills the GUI's fields with the information from
