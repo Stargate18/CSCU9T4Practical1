@@ -413,7 +413,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		// Add the entry to the training record, returning the received output.
 		String message = myAthletes.addEntry(e);
 		return message;
-	}
+	} // addEntry
 
 	/**
 	 * Call a function to find an entry that matches a date, using the arguments
@@ -449,7 +449,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		// Retrieve the entries from the training record, returning the received output.
 		String message = myAthletes.lookupEntry(d, m, y);
 		return message;
-	}
+	} // lookupEntry
 
 	/**
 	 * Call a function to find all entry that match a date, using the arguments
@@ -485,7 +485,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		// Retrieve the entries from the training record, returning the received output.
 		String message = myAthletes.lookupEntries(d, m, y);
 		return message;
-	}
+	} // lookupEntries
 
 	/**
 	 * Call a function to find all entry that match a name, using the arguments
@@ -503,7 +503,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		// Retrieve the entries from the training record, returning the received output.
 		String message = myAthletes.lookupEntriesByName(n);
 		return message;
-	}
+	} // lookupEntriesByName
 
 	/**
 	 * Call a function to remove the entry that matches a date and name, using the
@@ -545,7 +545,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		// Remove the entry from the training record, returning the received output.
 		String message = myAthletes.removeEntry(d, m, y, n);
 		return message;
-	}
+	} // removeEntry
 
 	/**
 	 * Clear all fields in the GUI
@@ -564,7 +564,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		where.setText("");
 		repet.setText("");
 		reco.setText("");
-	}// blankDisplay
+	} // blankDisplay
 
 	/**
 	 * For GUI testing purposes - fills the GUI's fields with the information from
@@ -612,6 +612,6 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		mins.setText(String.valueOf(ent.getMin()));
 		secs.setText(String.valueOf(ent.getSec()));
 		dist.setText(String.valueOf(ent.getDistance()));
-	}
+	} // fillDisplay
 
 } // TrainingRecordGUI

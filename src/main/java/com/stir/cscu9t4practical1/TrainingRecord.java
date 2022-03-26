@@ -165,7 +165,7 @@ public class TrainingRecord {
 		} else {
 			return "No matching records present";
 		}
-	} // lookupEntriesByName
+	} // removeEntry
 
 	/**
 	 * Finds the number of entries present within the training record.
@@ -174,13 +174,13 @@ public class TrainingRecord {
 	 */
 	public int getNumberOfEntries() {
 		return tr.size();
-	}
+	} // getNumberOfEntries
 
 	/**
 	 * Deletes all entries within the training record.
 	 */
 	public void clearAllEntries() {
 		tr.clear();
-	}
+	} // clearAllEntries
 
 } // TrainingRecord

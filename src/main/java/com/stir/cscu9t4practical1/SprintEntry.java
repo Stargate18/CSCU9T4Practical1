@@ -24,7 +24,7 @@ public class SprintEntry extends Entry {
 		super(n, d, m, y, h, min, s, dist);
 		this.repetitions = re;
 		this.recovery = rec;
-	}
+	} // constructor
 
 	/**
 	 * Get the value of the repetitions variable.
@@ -33,7 +33,7 @@ public class SprintEntry extends Entry {
 	 */
 	public int getRepetitions() {
 		return this.repetitions;
-	}
+	} // getRepetitions
 
 	/**
 	 * Get the value of the recovery variable.
@@ -42,7 +42,7 @@ public class SprintEntry extends Entry {
 	 */
 	public int getRecovery() {
 		return this.recovery;
-	}
+	} // getRecovery
 
 	/**
 	 * Get a string representation of the entry.
@@ -54,5 +54,5 @@ public class SprintEntry extends Entry {
 				+ ":" + getMin() + ":" + getSec() + " with " + getRecovery() + " minutes recovery on " + getDay() + "/"
 				+ getMonth() + "/" + getYear() + "\n";
 		return result;
-	}
+	} // getEntry
 }

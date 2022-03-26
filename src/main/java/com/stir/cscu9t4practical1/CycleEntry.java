@@ -26,7 +26,7 @@ public class CycleEntry extends Entry {
 		super(n, d, m, y, h, min, s, dist);
 		this.terrain = ter;
 		this.tempo = tem;
-	}
+	} // constructor
 
 	/**
 	 * Get the value of the terrain variable.
