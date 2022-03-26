@@ -26,8 +26,8 @@ public class TrainingRecord {
 		for (Entry x : tr) {
 			// If an entry with the same date and name as the provided entry is detected,
 			// mark that a matching entry was found and break the loop.
-			if (x.getName().equalsIgnoreCase(e.getName()) && x.getDay() == e.getDay() && x.getMonth() == e.getMonth()
-					&& x.getYear() == e.getYear()) {
+			if (x.getName().toLowerCase().contains(e.getName().toLowerCase()) && x.getDay() == e.getDay()
+					&& x.getMonth() == e.getMonth() && x.getYear() == e.getYear()) {
 				found = true;
 				break;
 			}
@@ -148,7 +148,8 @@ public class TrainingRecord {
 		for (Entry x : tr) {
 			// If an entry with the same date and name as the provided entry is detected,
 			// mark that a matching entry was found, delete it, and break the loop.
-			if (x.getName().equalsIgnoreCase(n) && x.getDay() == d && x.getMonth() == m && x.getYear() == y) {
+			if (x.getName().toLowerCase().contains(n.toLowerCase()) && x.getDay() == d && x.getMonth() == m
+					&& x.getYear() == y) {
 				found = true;
 				tr.remove(x);
 				break;

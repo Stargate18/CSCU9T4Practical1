@@ -121,6 +121,10 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		findAllByName.addActionListener(this);
 		add(removeEntry);
 		removeEntry.addActionListener(this);
+		lookUpByDate.setEnabled(false);
+		findAllByDate.setEnabled(false);
+		findAllByName.setEnabled(false);
+		removeEntry.setEnabled(false);
 		add(outputArea);
 		outputArea.setEditable(false);
 		setSize(720, 200);
@@ -171,6 +175,10 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		}
 		if (event.getSource() == addR) {
 			addEntry(types.getSelectedItem().toString().toLowerCase());
+			lookUpByDate.setEnabled(true);
+			findAllByDate.setEnabled(true);
+			findAllByName.setEnabled(true);
+			removeEntry.setEnabled(true);
 		}
 		if (event.getSource() == lookUpByDate) {
 			message = lookupEntry();
@@ -183,6 +191,12 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		}
 		if (event.getSource() == removeEntry) {
 			message = removeEntry();
+			if (myAthletes.getNumberOfEntries() == 0) {
+				lookUpByDate.setEnabled(false);
+				findAllByDate.setEnabled(false);
+				findAllByName.setEnabled(false);
+				removeEntry.setEnabled(false);
+			}
 		}
 		outputArea.setText(message);
 		blankDisplay();
@@ -396,7 +410,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		}
 		String n = name.getText();
 		outputArea.setText("looking up records ...");
-		String message = myAthletes.removeEntry(m, d, y, n);
+		String message = myAthletes.removeEntry(d, m, y, n);
 		return message;
 	}
 
