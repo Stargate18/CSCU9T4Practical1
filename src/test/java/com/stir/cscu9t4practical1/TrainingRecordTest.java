@@ -124,7 +124,7 @@ public class TrainingRecordTest {
     @Test
     public void testLookupEntries() {
         System.out.println("lookupEntries");
-        String expectResultsNone = "Sorry couldn't find anything for this date";
+        String expectResultsNone = "Sorry, couldn't find anything for this date";
         String expectResults = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n" + 
                                 "Bob ran 3.0 km in 0:14:15 on 1/2/2003\n";
         TrainingRecord instance = new TrainingRecord();
@@ -151,7 +151,7 @@ public class TrainingRecordTest {
     @Test
     public void testLookupEntriesByName() {
         System.out.println("lookupEntriesByName");
-        String expectResultsNone = "Sorry couldn't find anything for this name";
+        String expectResultsNone = "Sorry, couldn't find anything for this name";
         String expectResults = "Alice ran 3.0 km in 0:16:7 on 1/2/2003\n" + 
                                 "Alice ran 3.0 km in 0:14:15 on 1/2/2004\n";
         TrainingRecord instance = new TrainingRecord();
