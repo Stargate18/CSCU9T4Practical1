@@ -168,7 +168,7 @@ public class TrainingRecord {
 		}
 	} // removeEntry
 
-	public String weeklyDistance(int d, int m, int y) {
+	public String weeklyDistance() {
 		// Initialise a variable to store if any matching entries was found.
 		boolean found = false;
 		// Initialise a new calendar which, by default, has the current date/time.

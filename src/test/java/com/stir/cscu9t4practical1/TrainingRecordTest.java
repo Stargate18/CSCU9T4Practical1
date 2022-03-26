@@ -178,10 +178,7 @@ public class TrainingRecordTest {
 		instance.addEntry(a);
 		instance.addEntry(b);
 		instance.addEntry(c);
-		int d = 5;
-		int m = 2;
-		int y = 2003;
-		String result = instance.weeklyDistance(d, m, y);
+		String result = instance.weeklyDistance();
 		assertEquals(expectResults, result);
 	}
 

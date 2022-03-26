@@ -42,6 +42,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 	private JButton findAllByDate = new JButton("Find By Date");
 	private JButton findAllByName = new JButton("Find By Name");
 	private JButton removeEntry = new JButton("Remove By Date/Name");
+	private JButton weeklyDistance = new JButton("Weekly Distance?");
 	private TrainingRecord myAthletes = new TrainingRecord();
 
 	private JTextArea outputArea = new JTextArea(5, 50);
@@ -121,10 +122,13 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		findAllByName.addActionListener(this);
 		add(removeEntry);
 		removeEntry.addActionListener(this);
+		add(weeklyDistance);
+		weeklyDistance.addActionListener(this);
 		lookUpByDate.setEnabled(false);
 		findAllByDate.setEnabled(false);
 		findAllByName.setEnabled(false);
 		removeEntry.setEnabled(false);
+		weeklyDistance.setEnabled(false);
 		add(outputArea);
 		outputArea.setEditable(false);
 		setSize(720, 200);
@@ -193,6 +197,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 				findAllByDate.setEnabled(true);
 				findAllByName.setEnabled(true);
 				removeEntry.setEnabled(true);
+				weeklyDistance.setEnabled(true);
 			}
 		}
 		// If the event is the button to look up an entry by date, call lookupEntry() to
@@ -220,7 +225,11 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 				findAllByDate.setEnabled(false);
 				findAllByName.setEnabled(false);
 				removeEntry.setEnabled(false);
+				weeklyDistance.setEnabled(false);
 			}
+		}
+		if (event.getSource() == weeklyDistance) {
+			message = myAthletes.weeklyDistance();
 		}
 		// Show the message in the output area.
 		outputArea.setText(message);
