@@ -219,8 +219,10 @@ public class TrainingRecord {
 				}
 			}
 		}
-		result = result + "Total running: " + runtotal + "\nTotal cycling: " + cycletotal + "\nTotal swimming: "
-				+ swimtotal;
+		// Print the results, rounding the totals to avoid floating point errors.
+		result = result + "Total running: " + (Math.round(runtotal * 1000) / 1000.0) + "km\nTotal cycling: "
+				+ (Math.round(cycletotal * 1000) / 1000.0) + "km\nTotal swimming: "
+				+ (Math.round(swimtotal * 1000) / 1000.0) + "km";
 		// If at least one entry was found, return the results string, and return a
 		// message if not.
 		if (found) {

@@ -191,7 +191,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		// as an argument, then make the search and deletion buttons active if there is
 		// more than one entry present in the training record.
 		if (event.getSource() == addR) {
-			addEntry(types.getSelectedItem().toString().toLowerCase());
+			message = addEntry(types.getSelectedItem().toString().toLowerCase());
 			if (myAthletes.getNumberOfEntries() > 0) {
 				lookUpByDate.setEnabled(true);
 				findAllByDate.setEnabled(true);
@@ -265,7 +265,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		} catch (NumberFormatException e) {
 			return ("Year value was not an integer");
 		}
-		// Receive the year value, using a try-catch loop to catch exceptions from
+		// Receive the month value, using a try-catch loop to catch exceptions from
 		// non-integer inputs - terminating the function with a message if so.
 		// In addition, checks if the month is valid, giving a different message if not.
 		int m = 0;
@@ -317,12 +317,11 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		// Receive the hour value, using a try-catch loop to catch exceptions from
 		// non-integer inputs - terminating the function with a message if so.
 		// In addition, checks if the number of hours is positive, giving a different
-		// message if not. (No upper bound specified, as periods over 24 hours are
-		// possible.
+		// message if not.
 		int h = 0;
 		try {
 			h = Integer.parseInt(hours.getText());
-			if (h < 0) {
+			if (h < 0 || h > 23) {
 				return ("Invalid hour value");
 			}
 		} catch (NumberFormatException e) {
@@ -360,37 +359,6 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		if (what == "run") {
 			e = new Entry(n, d, m, y, h, mm, s, km);
 		}
-		// If the entry is a sprint entry, run the contained code.
-		else if (what == "sprint") {
-			// Receive the repetitions value, using a try-catch loop to catch exceptions
-			// from non-integer inputs - terminating the function with a message if so.
-			// In addition, checks if the number of repetitions is positive, giving a
-			// different message if not.
-			int rep = 0;
-			try {
-				rep = Integer.parseInt(repet.getText());
-				if (rep < 0) {
-					return ("Invalid repetitions value");
-				}
-			} catch (NumberFormatException f) {
-				return ("Repetitions value was not an integer");
-			}
-			// Receive the recovery value, using a try-catch loop to catch exceptions
-			// from non-integer inputs - terminating the function with a message if so.
-			// In addition, checks if the recovery time is positive, giving a different
-			// message if not.
-			int rec = 0;
-			try {
-				rec = Integer.parseInt(reco.getText());
-				if (rec < 0) {
-					return ("Invalid recovery value");
-				}
-			} catch (NumberFormatException f) {
-				return ("Recovery value was not an integer");
-			}
-			// Instantiate a new sprint entry using the provided parameters.
-			e = new SprintEntry(n, d, m, y, h, mm, s, km, rep, rec);
-		}
 		// If the entry is a cycle entry, run the contained code.
 		else if (what == "cycle") {
 			// Receive the terrain value, using an if statement after to ensure the
@@ -407,6 +375,37 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 			}
 			// Instantiate a new cycle entry using the provided parameters.
 			e = new CycleEntry(n, d, m, y, h, mm, s, km, terrain, tempo);
+		}
+		// If the entry is a sprint entry, run the contained code.
+		else if (what == "sprint") {
+			// Receive the repetitions value, using a try-catch loop to catch exceptions
+			// from non-integer inputs - terminating the function with a message if so.
+			// In addition, checks if the number of repetitions is above zero, giving a
+			// different message if not.
+			int rep = 0;
+			try {
+				rep = Integer.parseInt(repet.getText());
+				if (rep <= 0) {
+					return ("Invalid repetitions value");
+				}
+			} catch (NumberFormatException f) {
+				return ("Repetitions value was not an integer");
+			}
+			// Receive the recovery value, using a try-catch loop to catch exceptions
+			// from non-integer inputs - terminating the function with a message if so.
+			// In addition, checks if the recovery time is positive, giving a different
+			// message if not. (Recovery time of 0 is possible)
+			int rec = 0;
+			try {
+				rec = Integer.parseInt(reco.getText());
+				if (rec < 0) {
+					return ("Invalid recovery value");
+				}
+			} catch (NumberFormatException f) {
+				return ("Recovery value was not an integer");
+			}
+			// Instantiate a new sprint entry using the provided parameters.
+			e = new SprintEntry(n, d, m, y, h, mm, s, km, rep, rec);
 		}
 		// If the entry is a swim entry (the only other option), run the contained code.
 		else {

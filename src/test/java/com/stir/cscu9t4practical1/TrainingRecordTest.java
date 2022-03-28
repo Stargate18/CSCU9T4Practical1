@@ -170,10 +170,28 @@ public class TrainingRecordTest {
 		String expectResults = "Alice ran 3.0 km in 0:16:7 on 24/3/2022\n"
 				+ "Bob ran 4.0 km in 0:14:15 on 24/3/2022\n"
 				+ "Alice cycled 3.0 km in 0:16:7 on 25/3/2022 on asphalt at moderate tempo\n"
-				+ "Total running: 7.0\n" + "Total cycling: 3.0\n" + "Total swimming: 0.0";
+				+ "Total running: 7.0km\n" + "Total cycling: 3.0km\n" + "Total swimming: 0.0km";
 		TrainingRecord instance = new TrainingRecord();
 		Entry a = new Entry("Alice", 24, 3, 2022, 0, 16, 7, 3);
 		Entry b = new Entry("Bob", 24, 3, 2022, 0, 14, 15, 4);
+		Entry c = new CycleEntry("Alice", 25, 3, 2022, 0, 16, 7, 3, "asphalt", "moderate");
+		instance.addEntry(a);
+		instance.addEntry(b);
+		instance.addEntry(c);
+		String result = instance.weeklyDistance();
+		assertEquals(expectResults, result);
+	}
+	
+	@Test
+	public void testTotalDistanceSprint() {
+		System.out.println("lookupEntries");
+		String expectResults = "Alice ran 3.0 km in 0:16:7 on 24/3/2022\n"
+				+ "Bob sprinted 2x400m in 0:14:15 with 5 minutes recovery on 24/3/2022\n"
+				+ "Alice cycled 3.0 km in 0:16:7 on 25/3/2022 on asphalt at moderate tempo\n"
+				+ "Total running: 3.8km\n" + "Total cycling: 3.0km\n" + "Total swimming: 0.0km";
+		TrainingRecord instance = new TrainingRecord();
+		Entry a = new Entry("Alice", 24, 3, 2022, 0, 16, 7, 3);
+		Entry b = new SprintEntry("Bob", 24, 3, 2022, 0, 14, 15, 400, 2, 5);
 		Entry c = new CycleEntry("Alice", 25, 3, 2022, 0, 16, 7, 3, "asphalt", "moderate");
 		instance.addEntry(a);
 		instance.addEntry(b);
