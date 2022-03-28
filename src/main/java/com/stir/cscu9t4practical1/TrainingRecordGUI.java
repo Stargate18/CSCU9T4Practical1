@@ -356,11 +356,11 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 		// Declare an entry e.
 		Entry e;
 		// If the entry is a run, instantiate a new entry using the provided parameters.
-		if (what == "run") {
+		if (what.equals("run")) {
 			e = new Entry(n, d, m, y, h, mm, s, km);
 		}
 		// If the entry is a cycle entry, run the contained code.
-		else if (what == "cycle") {
+		else if (what.equals("cycle")) {
 			// Receive the terrain value, using an if statement after to ensure the
 			// contents aren't empty.
 			String terrain = terr.getText();
@@ -377,7 +377,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 			e = new CycleEntry(n, d, m, y, h, mm, s, km, terrain, tempo);
 		}
 		// If the entry is a sprint entry, run the contained code.
-		else if (what == "sprint") {
+		else if (what.equals("sprint")) {
 			// Receive the repetitions value, using a try-catch loop to catch exceptions
 			// from non-integer inputs - terminating the function with a message if so.
 			// In addition, checks if the number of repetitions is above zero, giving a
@@ -407,8 +407,8 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 			// Instantiate a new sprint entry using the provided parameters.
 			e = new SprintEntry(n, d, m, y, h, mm, s, km, rep, rec);
 		}
-		// If the entry is a swim entry (the only other option), run the contained code.
-		else {
+		// If the entry is a swim entry, run the contained code.
+		else if (what.equals("swim")){
 			// Receive the location value, using an if statement after to ensure the
 			// contents aren't empty.
 			String w = where.getText();
@@ -417,6 +417,8 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
 			}
 			// Instantiate a new swim entry using the provided parameters.
 			e = new SwimEntry(n, d, m, y, h, mm, s, km, w);
+		} else {
+			return ("Error determining type of entry");
 		}
 		// Add the entry to the training record, returning the received output.
 		String message = myAthletes.addEntry(e);
